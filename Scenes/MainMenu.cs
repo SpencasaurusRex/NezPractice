@@ -4,34 +4,40 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
+using NezPractice.Components;
+using NezPractice.Systems;
 
 namespace NezPractice.Scenes
 {
-    public class MainMenu : Nez.Scene
+    public class MainMenu : Scene
     {
-        SpriteFont macabre48Font;
-
         public MainMenu()
         {
-            addRenderer(new DefaultRenderer());
-            clearColor = Color.Black;
         }
 
         public override void initialize()
         {
             base.initialize();
 
-            setDesignResolution(1280, 720, SceneResolutionPolicy.ShowAllPixelPerfect);
-            Screen.setSize(1280, 720);
+            addRenderer(new DefaultRenderer());
+            clearColor = Color.Black;
 
-            macabre48Font = content.Load<SpriteFont>("Font/Macabre48");
+            setDesignResolution(1280, 720, SceneResolutionPolicy.ShowAllPixelPerfect);
+
+            var macabre48Font = content.Load<SpriteFont>("Font/Macabre48");
             var word = createEntity("word", new Vector2(100, 100));
-            var text = new Text(new NezSpriteFont(macabre48Font), "Testing", new Vector2(100, 100), Color.White);
+            var text = new Text(new NezSpriteFont(macabre48Font), "", new Vector2(100, 100), Color.White);
             word.addComponent(text);
+
+            var jumbler = new Jumbler(12);
+            word.addComponent(jumbler);
+
+            addEntityProcessor(new TextJumblerSystem());
         }
 
-        public override void onStart()
+        public override void update()
         {
+            base.update();
         }
     }
 }
