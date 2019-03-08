@@ -43,12 +43,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Components\Jumbler.cs" />
-    <Compile Include="Game1.cs" />
+    <Compile Include="Components\Card.cs" />
+    <Compile Include="Components\Target.cs" />
+    <Compile Include="Content\Battlefield.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
-    <Compile Include="Systems\TextJumblerSystem.cs" />
+    <Compile Include="Systems\CardCoordinator.cs" />
+    <Compile Include="Systems\CardMover.cs" />
+    <Compile Include="Systems\Deck.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
