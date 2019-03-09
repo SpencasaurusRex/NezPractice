@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Nez;
 using NezPractice.Components;
 
@@ -6,11 +8,14 @@ namespace NezPractice.Systems
 {
     public class CardCoordinator : EntityProcessingSystem
     {
-        Deck deck;
-        
-        public CardCoordinator(Deck deck) : base(new Matcher().all(typeof(Card), typeof(Target)))
+        const int Padding = 20;
+        readonly int cardWidth;
+        readonly int cardHeight;
+
+        public CardCoordinator(int width, int height) : base(new Matcher().all(typeof(Card), typeof(Target)))
         {
-            this.deck = deck;
+            cardWidth = width;
+            cardHeight = height;
         }
 
         public override void process(Entity entity)
@@ -19,12 +24,27 @@ namespace NezPractice.Systems
 
         protected override void process(List<Entity> entities)
         {
-            float xPosition = 0;
+            float idealWidth = cardWidth + Padding;
+            int bottomRowCards = entities.Select(e => e.getComponent<Card>())
+                .Count(c => c.Location == CardLocation.Deck && c.Selected == CardSelected.None);
+            float actualWidth = Math.Min((float)Screen.width / bottomRowCards, idealWidth); 
+
+            float xPosition = idealWidth / 2;
             foreach (var entity in entities)
             {
                 var target = entity.getComponent<Target>();
-                target.Position.X = xPosition;
-                xPosition += 100;
+                var card = entity.getComponent<Card>();
+                if (card.Selected == CardSelected.None)
+                {
+                    target.Position.X = xPosition;
+                    target.Position.Y = Screen.height - cardHeight;
+                    xPosition += actualWidth;
+                }
+                else
+                {
+                    target.Position.X = Screen.width / 2 ;
+                    target.Position.Y = Screen.height  / 2;
+                }
             }
         }
     }

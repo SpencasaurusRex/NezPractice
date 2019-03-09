@@ -6,7 +6,8 @@ namespace NezPractice.Systems
 {
     public class CardMover : EntityProcessingSystem
     {
-        float speed = .01f;
+        float speed = .1f;
+        float maxVelocity = 200f;
 
         public CardMover() : base(new Matcher().all(typeof(Card), typeof(Target)))
         {
@@ -16,6 +17,12 @@ namespace NezPractice.Systems
         {
             var target = entity.getComponent<Target>();
             Vector2 delta = target.Position - entity.position;
+            if (delta.LengthSquared() > maxVelocity * maxVelocity)
+            {
+                var ratio = maxVelocity / delta.Length();
+                delta.X *= ratio;
+                delta.Y *= ratio;
+            }
 
             entity.position += delta * speed;
         }

@@ -30,10 +30,9 @@ namespace NezPractice.Content
 
         private void CreateSystems()
         {
-            var deck = new Deck();
-            addEntityProcessor(deck);
-            addEntityProcessor(new CardCoordinator(deck));
+            addEntityProcessor(new CardCoordinator(CardFront.Width, CardFront.Height));
             addEntityProcessor(new CardMover());
+            addEntityProcessor(new RandomCardSelector());
         }
 
         private void CreateScene()

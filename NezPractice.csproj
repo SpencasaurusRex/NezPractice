@@ -52,7 +52,7 @@
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Systems\CardCoordinator.cs" />
     <Compile Include="Systems\CardMover.cs" />
-    <Compile Include="Systems\Deck.cs" />
+    <Compile Include="Systems\RandomCardSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
