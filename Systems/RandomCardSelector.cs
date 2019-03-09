@@ -12,6 +12,7 @@ namespace NezPractice.Systems
         const int Padding = 20;
         readonly int cardWidth;
         readonly int cardHeight;
+        int framesSinceLastSelection;
 
         public RandomCardSelector() : base(new Matcher().all(typeof(Card)))
         {
@@ -27,12 +28,8 @@ namespace NezPractice.Systems
             {
                 return;
             }
-
-            if (Random.range(1, 20) > 1)
-            {
-                return;
-            }
-
+            if (framesSinceLastSelection++ < 60) return;
+            framesSinceLastSelection = 0;
             var index = Random.range(0, entities.Count);
             for (int i = 0; i < entities.Count; i++)
             {
