@@ -37,7 +37,7 @@ namespace NezPractice.Systems
                 if (card.Selected == CardSelected.None)
                 {
                     target.Position.X = xPosition;
-                    target.Position.Y = Screen.height - cardHeight;
+                    target.Position.Y = Screen.height - cardHeight / 2 - Padding / 2;
                     xPosition += actualWidth;
                 }
                 else
