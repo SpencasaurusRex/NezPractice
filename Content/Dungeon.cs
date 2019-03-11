@@ -7,7 +7,7 @@ using NezPractice.Systems;
 
 namespace NezPractice.Content
 {
-    public class Battlefield : Scene
+    public class Dungeon : Scene
     {
         public Texture2D CardFront;
         public Texture2D CardBack;
@@ -46,7 +46,6 @@ namespace NezPractice.Content
                 card.position = new Vector2(x, y);
 
                 card.addComponent(new Card());
-
                 card.addComponent(new Sprite(CardBack));
 
                 x = Random.range(0, Screen.width);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Nez;
+using Nez.Tweens;
 using NezPractice.Components;
 
 namespace NezPractice.Systems

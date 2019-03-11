@@ -25,9 +25,10 @@ namespace NezPractice.Systems
         protected override void process(List<Entity> entities)
         {
             float idealWidth = cardWidth + Padding;
+            float screenWidth = Screen.width - cardWidth / 2 - Padding / 2;
             int bottomRowCards = entities.Select(e => e.getComponent<Card>())
                 .Count(c => c.Location == CardLocation.Deck && c.Selected == CardSelected.None);
-            float actualWidth = Math.Min((float)Screen.width / bottomRowCards, idealWidth); 
+            float actualWidth = Math.Min(screenWidth / bottomRowCards, idealWidth); 
 
             float xPosition = idealWidth / 2;
             foreach (var entity in entities)

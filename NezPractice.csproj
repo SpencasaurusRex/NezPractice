@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Components\Card.cs" />
     <Compile Include="Components\Target.cs" />
-    <Compile Include="Content\Battlefield.cs" />
+    <Compile Include="Content\Dungeon.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
